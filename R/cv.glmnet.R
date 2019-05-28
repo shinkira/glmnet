@@ -77,17 +77,19 @@ cv.glmnet <-
     offset, foldid, type.measure, grouped, keep))
   cvm = cvstuff$cvm
   cvsd = cvstuff$cvsd
+  cvraw = cvstuff$cvraw # cvraw added by SK 19/05/27
   nas=is.na(cvsd)
   if(any(nas)){
     lambda=lambda[!nas]
     cvm=cvm[!nas]
     cvsd=cvsd[!nas]
     nz=nz[!nas]
+    cvraw = cvraw[!nas] # cvraw added by SK 19/05/27
   }
   cvname = names(cvstuff$type.measure)
   names(cvname)=cvstuff$type.measure# to be compatible with earlier version; silly, I know
   out = list(lambda = lambda, cvm = cvm, cvsd = cvsd, cvup = cvm +
-    cvsd, cvlo = cvm - cvsd, nzero = nz, name = cvname, glmnet.fit = glmnet.object)
+  cvsd, cvlo = cvm - cvsd, nzero = nz, name = cvname, glmnet.fit = glmnet.object, cvraw = cvraw) # cvraw added by SK 19/05/27
   if (keep)
     out = c(out, list(fit.preval = cvstuff$fit.preval, foldid = foldid))
   lamin=if(cvname=="AUC")getmin(lambda,-cvm,cvsd)

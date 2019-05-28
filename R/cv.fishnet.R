@@ -50,7 +50,7 @@ cv.fishnet <-
   cvm = apply(cvraw, 2, weighted.mean, w = weights, na.rm = TRUE)
   cvsd = sqrt(apply(scale(cvraw, cvm, FALSE)^2, 2, weighted.mean,
     w = weights, na.rm = TRUE)/(N - 1))
-  out = list(cvm = cvm, cvsd = cvsd, type.measure=type.measure)
+    out = list(cvm = cvm, cvsd = cvsd, type.measure=type.measure, cvraw = cvraw) # updated by SK 19/05/27
   if (keep)
     out$fit.preval = predmat
   out
