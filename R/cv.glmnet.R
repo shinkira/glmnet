@@ -84,7 +84,7 @@ cv.glmnet <-
     cvm=cvm[!nas]
     cvsd=cvsd[!nas]
     nz=nz[!nas]
-    cvraw = cvraw[!nas] # cvraw added by SK 19/05/27
+    cvraw = cvraw[,!nas] # cvraw added by SK 19/05/27; debugged on 19/05/29
   }
   cvname = names(cvstuff$type.measure)
   names(cvname)=cvstuff$type.measure# to be compatible with earlier version; silly, I know
